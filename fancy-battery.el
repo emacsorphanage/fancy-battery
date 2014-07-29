@@ -4,7 +4,7 @@
 
 ;; Author: Sebastian Wiesner <swiesner@lunaryorn.com>
 ;; Keywords: convenience tools hardware
-;; Package-Version: 0.1
+;; Package-Version: 0.2-cvs
 ;; Package-Requires: ((emacs "24.1"))
 
 ;; This file is part of GNU Emacs.
