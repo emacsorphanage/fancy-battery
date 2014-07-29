@@ -33,7 +33,15 @@
 
 (defcustom fancy-battery-mode-line
   '(:eval (fancy-battery-default-mode-line))
-  "Mode line string for `fancy-battery-mode'."
+  "Mode line string for `fancy-battery-mode'.
+
+This variable is a mode line format sexp.  See Info
+Node `(elisp)Mode Line Format' for more information, and
+`fancy-battery-default-mode-line' for the default value.
+
+Do *not* call `battery-status-function' in the mode line format.
+This would *significantly* slow down mode line updates.  Instead,
+use the cached status in `fancy-battery-last-status'."
   :type 'sexp
   :group 'battery
   :risky t)
@@ -50,6 +58,18 @@
   "Face for charging battery status."
   :group 'battery)
 
+(defvar fancy-battery-timer nil
+  "Timer to update the battery information.")
+
+(defvar fancy-battery-last-status nil
+  "Last battery status.")
+
+(defun fancy-battery-update ()
+  "Update battery information and update the mode line."
+  (setq fancy-battery-last-status (and battery-status-function
+                                       (funcall battery-status-function)))
+  (force-mode-line-update))
+
 (defun fancy-battery-default-mode-line ()
   "Assemble a mode line string for Fancy Battery Mode.
 
@@ -57,22 +77,18 @@ Display the remaining battery time, if available, otherwise the
 percentage.  If the battery is critical, use
 `battery-critical-face'.  Otherwise use `fancy-battery-charging'
 or `fancy-battery-discharging', depending on the current state."
-  (when battery-status-function
-    (let* ((status (funcall battery-status-function))
-           (time (cdr (assq ?t status)))
-           (face (pcase (cdr (assq ?b status))
+  (when fancy-battery-last-status
+    (let* ((time (cdr (assq ?t fancy-battery-last-status)))
+           (face (pcase (cdr (assq ?b fancy-battery-last-status))
                    ("!" 'fancy-battery-critical)
                    ((or "" "+") 'fancy-battery-charging)
-                   (_ 'fancy-battery-discharging))))
+                   (_ 'fancy-battery-discharging)))
+           (percentage (cdr (assq ?p fancy-battery-last-status)))
+           (status (if (string= time "N/A") (concat percentage "%%") time)))
       (if time
-          (propertize (if (string= time "N/A")
-                          (concat (cdr (assq ?p status)) "%%") time)
-                      'face face)
+          (propertize status 'face face)
         ;; Battery status is not available
         (propertize "N/A" 'face 'error)))))
-
-(defvar fancy-battery-timer nil
-  "Timer to update the battery information.")
 
 ;;;###autoload
 (define-minor-mode fancy-battery-mode
@@ -106,7 +122,7 @@ The text in the mode line is controlled by
    (t
     (add-to-list 'global-mode-string 'fancy-battery-mode-line t)
     (setq fancy-battery-timer (run-at-time nil battery-update-interval
-                                           #'force-mode-line-update)))))
+                                           #'fancy-battery-update)))))
 
 (provide 'fancy-battery)
 
