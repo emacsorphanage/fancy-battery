@@ -33,11 +33,23 @@ In your `init.el`:
 Customization
 -------------
 
-- Faces: `fancy-battery-critical`, `fancy-battery-charging`, and
-  `fancy-battery-discharging`
-- Mode Line Format: `fancy-battery-mode-line`.  See [Mode Line Format][] for
-  more information
-- Battery status: `M-x customize-group RET battery`
+Customize `fancy-battery-critical`, `fancy-battery-charging`, and
+`fancy-battery-discharging` to change the status colours used by the default
+mode line format.
+
+Customize `fancy-battery-mode-line` to use your own mode line format for Fancy
+Battery Mode.  See [Mode Line Format][] for documentation of the format, and
+take a look at `fancy-battery-default-mode-line` to see how the default value is
+built.
+
+Customize `mode-line-misc-info` and `mode-line-format` to change the position at
+which the battery status appears in the mode line.  Typically it's at the very
+end after the minor mode list, so you may want to move `mode-line-misc-info`
+more to the front of `mode-line-format`.
+
+Customize `battery-update-interval` to change the interval at which battery
+information is updated, and `battery-status-function` to add your own battery
+status backend.
 
 License
 -------
