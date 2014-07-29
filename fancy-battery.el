@@ -3,6 +3,7 @@
 ;; Copyright (C) 2014  Sebastian Wiesner <swiesner@lunaryorn.com>
 
 ;; Author: Sebastian Wiesner <swiesner@lunaryorn.com>
+;; URL: https://github.com/lunaryorn/fancy-battery.el
 ;; Keywords: convenience tools hardware
 ;; Package-Version: 0.2-cvs
 ;; Package-Requires: ((emacs "24.1"))
