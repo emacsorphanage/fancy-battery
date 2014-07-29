@@ -3,7 +3,9 @@ fancy-battery
 
 [![License GPL 3][badge-license]][copying]
 
-Display battery status in Emacs mode line.
+Display battery status in Emacs mode line:
+
+![Battery status in mode line](https://raw.githubusercontent.com/lunaryorn/fancy-battery.el/master/screenshot.png)
 
 Provides `fancy-battery-mode`, which is like the built-in
 `display-battery-mode`, but more fancy: It shows just the remaining time, and
