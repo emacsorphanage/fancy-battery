@@ -27,6 +27,11 @@
 ;; Provide `fancy-battery-mode', which is like `display-battery-mode' but with
 ;; fancier display, and more customization options.
 
+;; Customize `fancy-battery-mode-line' to change the appearance of the battery
+;; status information.  Take a look at `fancy-battery-default-mode-line' for the
+;; default value and for inspiration.
+
+
 ;;; Code:
 
 (require 'battery)
