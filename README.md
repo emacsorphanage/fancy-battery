@@ -68,6 +68,11 @@ indicate that you should really grab the AC plug now:
 
 ![Critical time](https://raw.githubusercontent.com/lunaryorn/fancy-battery.el/master/images/critical-remaining-time.png)
 
+**Note:** On OS X Emacs currently fails to report critical battery status due to
+an issue in `battery-pmset`.  See Emacs bug [#18157][] for details.
+
+[#18157]: http://debbugs.gnu.org/cgi/bugreport.cgi?bug=18157
+
 Customization
 -------------
 
