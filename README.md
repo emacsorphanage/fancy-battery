@@ -56,6 +56,8 @@ Customize `battery-update-interval` to change the interval at which battery
 information is updated, and `battery-status-function` to add your own battery
 status backend.
 
+All options are available via `M-x customize-group RET fancy-battery`.
+
 License
 -------
 

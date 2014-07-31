@@ -41,6 +41,11 @@
 
 (require 'battery)
 
+(defgroup fancy-battery '((battery-update-interval custom-variable))
+  "Powerful and fancy battery status updates."
+  :group 'battery
+  :prefix "fancy-battery-")
+
 (defcustom fancy-battery-mode-line
   '(:eval (fancy-battery-default-mode-line))
   "Mode line string for `fancy-battery-mode'.
@@ -53,20 +58,20 @@ Do *not* call `battery-status-function' in the mode line format.
 This would *significantly* slow down mode line updates.  Instead,
 use the cached status in `fancy-battery-last-status'."
   :type 'sexp
-  :group 'battery
+  :group 'fancy-battery
   :risky t)
 
 (defface fancy-battery-critical '((t :inherit error))
   "Face for critical battery status"
-  :group 'battery)
+  :group 'fancy-battery)
 
 (defface fancy-battery-charging '((t :inherit success))
   "Face for charging battery status."
-  :group 'battery)
+  :group 'fancy-battery)
 
 (defface fancy-battery-discharging '((t :inherit warning))
   "Face for charging battery status."
-  :group 'battery)
+  :group 'fancy-battery)
 
 (defcustom fancy-battery-status-update-functions nil
   "Functions to run after a battery status update.
@@ -77,7 +82,7 @@ status is not available, the argument is nil.
 
 This variable is an abnormal hook.  See Info
 Node `(elisp)Hooks'."
-  :group 'battery
+  :group 'fancy-battery
   :type 'hook
   :package-version '(fancy-battery . "0.2"))
 
