@@ -35,6 +35,9 @@ In your `init.el`:
 Customization
 -------------
 
+Add your own functions to `fancy-battery-status-update-functions` to receive
+battery status updates.
+
 Customize `fancy-battery-critical`, `fancy-battery-charging`, and
 `fancy-battery-discharging` to change the status colours used by the default
 mode line format.

@@ -68,6 +68,19 @@ use the cached status in `fancy-battery-last-status'."
   "Face for charging battery status."
   :group 'battery)
 
+(defcustom fancy-battery-status-update-functions nil
+  "Functions to run after a battery status update.
+
+Each function is called with the status alist as returned by
+`battery-status-function' as single argument.  If the battery
+status is not available, the argument is nil.
+
+This variable is an abnormal hook.  See Info
+Node `(elisp)Hooks'."
+  :group 'battery
+  :type 'hook
+  :package-version '(fancy-battery . "0.2"))
+
 (defvar fancy-battery-timer nil
   "Timer to update the battery information.")
 
@@ -75,9 +88,16 @@ use the cached status in `fancy-battery-last-status'."
   "Last battery status.")
 
 (defun fancy-battery-update ()
-  "Update battery information and update the mode line."
-  (setq fancy-battery-last-status (and battery-status-function
-                                       (funcall battery-status-function)))
+  "Update battery information.
+
+Obtain the current battery status and store it in
+`fancy-battery-last-status'.  Run
+`fancy-battery-status-update-functions', and finally update the
+mode line."
+  (let ((status (and battery-status-function
+                     (funcall battery-status-function))))
+    (setq fancy-battery-last-status status)
+    (run-hook-with-args 'fancy-battery-status-update-functions status))
   (force-mode-line-update))
 
 (defun fancy-battery-default-mode-line ()
