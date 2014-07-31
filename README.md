@@ -3,9 +3,9 @@ fancy-battery
 
 [![License GPL 3][badge-license]][copying]
 
-Display battery status in Emacs mode line:
+Display battery status in Emacs mode line ([Solarized Light][]):
 
-![Battery status in mode line](https://raw.githubusercontent.com/lunaryorn/fancy-battery.el/master/screenshot.png)
+![Battery status in mode line][screenshot]
 
 Provides `fancy-battery-mode`, which is like the built-in
 `display-battery-mode`, but more fancy: It shows just the remaining time, and
@@ -14,6 +14,8 @@ customizable.
 
 [badge-license]: https://img.shields.io/badge/license-GPL_3-green.svg?dummy
 [COPYING]: https://github.com/lunaryorn/fancy-battery.el/blob/master/COPYING
+[Solarized Light]: https://github.com/bbatsov/solarized-emacs
+[screenshot]: https://raw.githubusercontent.com/lunaryorn/fancy-battery.el/master/screenshot.png
 
 Installation
 ------------
@@ -38,6 +40,33 @@ In your `init.el`:
 [Cask]: https://github.com/cask/cask
 [MELPA]: http://melpa.milkbox.net
 [MELPA Stable]: http://melpa-stable.milkbox.net
+
+Appearance
+----------
+
+When the battery is charging, Fancy Battery shows the remaining time until full
+charge in `fancy-battery-charging` face, which inherits from the built-in
+`success` face:
+
+![Charging time](https://raw.githubusercontent.com/lunaryorn/fancy-battery.el/master/images/charging-remaining-time.png)
+
+If no information about the remaining time is available, it falls back to
+the charge level of the battery.  If you prefer to always see the charge level,
+set `fancy-battery-show-percentage` to `t`:
+
+![Charging percentage](https://raw.githubusercontent.com/lunaryorn/fancy-battery.el/master/images/charging-percentage.png)
+
+When the AC plug is disconnected, the text changes to the
+`fancy-battery-discharging` face, which inherits from the built-in `warning`
+face.  The time now indicates how long the battery will last.
+
+![Discharging time](https://raw.githubusercontent.com/lunaryorn/fancy-battery.el/master/images/discharging-remaining-time.png)
+
+As soon as the battery level gets critically low, the face changes to
+`fancy-battery-critical`, which inherits form the built-in `error` face, to
+indicate that you should really grab the AC plug now:
+
+![Critical time](https://raw.githubusercontent.com/lunaryorn/fancy-battery.el/master/images/critical-remaining-time.png)
 
 Customization
 -------------
