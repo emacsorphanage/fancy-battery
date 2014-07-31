@@ -1,5 +1,5 @@
-master (in development)
-=======================
+0.2 (Jul 31, 2014)
+==================
 
 - Update all mode lines if the battery status is updated
 - Add `fancy-battery-show-percentage`
