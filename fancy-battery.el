@@ -112,7 +112,7 @@ mode line."
                      (funcall battery-status-function))))
     (setq fancy-battery-last-status status)
     (run-hook-with-args 'fancy-battery-status-update-functions status))
-  (force-mode-line-update))
+  (force-mode-line-update 'all))
 
 (defun fancy-battery-default-mode-line ()
   "Assemble a mode line string for Fancy Battery Mode.
