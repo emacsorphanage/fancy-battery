@@ -91,7 +91,7 @@ or `fancy-battery-discharging', depending on the current state."
     (let* ((time (cdr (assq ?t fancy-battery-last-status)))
            (face (pcase (cdr (assq ?b fancy-battery-last-status))
                    ("!" 'fancy-battery-critical)
-                   ((or "" "+") 'fancy-battery-charging)
+                   ("+" 'fancy-battery-charging)
                    (_ 'fancy-battery-discharging)))
            (percentage (cdr (assq ?p fancy-battery-last-status)))
            (status (if (string= time "N/A") (concat percentage "%%") time)))
