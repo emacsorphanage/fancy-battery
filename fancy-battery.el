@@ -73,6 +73,15 @@ use the cached status in `fancy-battery-last-status'."
   "Face for charging battery status."
   :group 'fancy-battery)
 
+(defcustom fancy-battery-show-percentage nil
+  "When non-nil show battery load percentage in mode line.
+
+Otherwise, show the remaining time to charge or discharge if
+available.
+
+Has no effect, if `fancy-battery-mode-line' does not evaluate
+`fancy-battery-default-mode-line'.")
+
 (defcustom fancy-battery-status-update-functions nil
   "Functions to run after a battery status update.
 
@@ -108,7 +117,8 @@ mode line."
 (defun fancy-battery-default-mode-line ()
   "Assemble a mode line string for Fancy Battery Mode.
 
-Display the remaining battery time, if available, otherwise the
+Display the remaining battery time, if available and
+`fancy-battery-show-percentage' is non-nil, otherwise the
 percentage.  If the battery is critical, use
 `battery-critical-face'.  Otherwise use `fancy-battery-charging'
 or `fancy-battery-discharging', depending on the current state."
@@ -119,8 +129,10 @@ or `fancy-battery-discharging', depending on the current state."
                    ("+" 'fancy-battery-charging)
                    (_ 'fancy-battery-discharging)))
            (percentage (cdr (assq ?p fancy-battery-last-status)))
-           (status (if (string= time "N/A") (concat percentage "%%") time)))
-      (if time
+           (status (if (or fancy-battery-show-percentage (string= time "N/A"))
+                       (and percentage (concat percentage "%%"))
+                     time)))
+      (if status
           (propertize status 'face face)
         ;; Battery status is not available
         (propertize "N/A" 'face 'error)))))
