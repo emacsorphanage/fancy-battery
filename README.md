@@ -12,6 +12,9 @@ Provides `fancy-battery-mode`, which is like the built-in
 uses colours to indicate the status of the battery.  It is also more
 customizable.
 
+[badge-license]: https://img.shields.io/badge/license-GPL_3-green.svg?dummy
+[COPYING]: https://github.com/lunaryorn/fancy-battery.el/blob/master/COPYING
+
 Installation
 ------------
 
@@ -31,6 +34,10 @@ In your `init.el`:
 ```cl
 (add-hook 'after-init-hook #'fancy-battery-mode)
 ```
+
+[Cask]: https://github.com/cask/cask
+[MELPA]: http://melpa.milkbox.net
+[MELPA Stable]: http://melpa-stable.milkbox.net
 
 Customization
 -------------
@@ -59,6 +66,8 @@ status backend.
 
 All options are available via `M-x customize-group RET fancy-battery`.
 
+[Mode Line Format]: http://www.gnu.org/software/emacs/manual/html_node/elisp/Mode-Line-Format.html
+
 License
 -------
 
@@ -75,10 +84,3 @@ You should have received a copy of the GNU General Public License along with
 this program.  If not, see http://www.gnu.org/licenses/.
 
 See [`COPYING`][copying] for details.
-
-[badge-license]: https://img.shields.io/badge/license-GPL_3-green.svg?dummy
-[COPYING]: https://github.com/lunaryorn/fancy-battery.el/blob/master/COPYING
-[Cask]: https://github.com/cask/cask
-[MELPA]: http://melpa.milkbox.net
-[MELPA Stable]: http://melpa-stable.milkbox.net
-[Mode Line Format]: http://www.gnu.org/software/emacs/manual/html_node/elisp/Mode-Line-Format.html
