@@ -1,7 +1,7 @@
 fancy-battery
 =============
 
-[![License GPL 3][badge-license]][copying]
+[![Unmaintained](https://img.shields.io/maintenance/yes/2015.svg)]() [![License GPL 3][badge-license]][copying]
 
 Display battery status in Emacs mode line ([Solarized Light][]):
 
