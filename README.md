@@ -12,7 +12,7 @@ Provides `fancy-battery-mode`, which is like the built-in
 uses colours to indicate the status of the battery.  It is also more
 customizable.
 
-[badge-license]: 	https://img.shields.io/github/license/lunaryorn/fancy-battery.el
+[badge-license]: 	https://img.shields.io/github/license/lunaryorn/fancy-battery.el.svg
 [COPYING]: https://github.com/lunaryorn/fancy-battery.el/blob/master/COPYING
 [Solarized Light]: https://github.com/bbatsov/solarized-emacs
 [screenshot]: https://raw.githubusercontent.com/lunaryorn/fancy-battery.el/master/screenshot.png
